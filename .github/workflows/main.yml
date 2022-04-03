@@ -3,13 +3,13 @@ on: [push]
 jobs:
   hello_world_job:
     runs-on: ubuntu-latest
-    name: A job to say hello
+    name: A job to verify PDF
     steps:
-      - name: Hello world action step
-        id: hello
-        uses: jdujava/cuni-thesis-validator@v1
+      - name: Verify the PDF file
+        id: verify
+        uses: jdujava/cuni-thesis-validator@v2
         with:
-          who-to-greet: 'Mona the Octocat'
-      # Use the output from the `hello` step
-      - name: Get the output time
-        run: echo "The time was ${{ steps.hello.outputs.time }}"
+          pdf_file: thesis.pdf
+      # Echo the valiadtion report
+      - name: Get the return value of verify
+        run: echo "Verify status: ${{ steps.verify.outputs.is_valid }}"

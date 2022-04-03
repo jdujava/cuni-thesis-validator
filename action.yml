@@ -1,15 +1,18 @@
 name: 'Hello World'
 description: 'Greet someone and record the time'
 inputs:
-  who-to-greet:  # id of input
-    description: 'Who to greet'
+  pdf_file:  # id of input
+    description: 'PDF file to verify'
     required: true
-    default: 'World'
+    default: 'thesis.pdf'
+  working_directory:
+    description: The working directory
 outputs:
-  time: # id of output
-    description: 'The time we greeted you'
+  is_valid: # id of output
+    description: 'Return value of verify'
 runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.who-to-greet }}
+    - ${{ inputs.pdf_file }}
+    - ${{ inputs.working_directory }}
