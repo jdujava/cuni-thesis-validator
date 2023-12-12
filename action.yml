@@ -1,0 +1,15 @@
+name: 'Verify PDF/A'
+description: 'Verify PDF/A compliance of a PDF file'
+inputs:
+  pdf_file: # id of input
+    description: 'PDF file to verify'
+    required: true
+    default: 'thesis.pdf'
+outputs:
+  is_valid: # id of output
+    description: 'Is 1 if PDF/A compliant, 0 otherwise'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.pdf_file }}
